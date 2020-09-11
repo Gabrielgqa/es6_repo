@@ -1,9 +1,14 @@
-const myPromise = () => new Promise((resolve, reject) => {
-  setTimeout(() => { resolve('Hello World')}, 2000);
-});
+import axios from 'axios';
 
-const executePromise = async () => {
-  console.log(await myPromise());
-};
+class Api {
+  static async getUser(username) {
+    try {
+      const response = await axios.get(`https://api.github.com/users/${username}`)
+      console.log(response);
+    } catch (error) {
+      console.warn('Erro na busca');
+    }
+  }
+}
 
-executePromise();
+Api.getUser('gabrielgqa');
